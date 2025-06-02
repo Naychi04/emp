@@ -3,8 +3,8 @@ package Model;
 import Config.date;
 
 public class AdminModel {
-    private String admin_id;
-    private String adminName;
+    private String adm_id;
+    private String admName;
     private String email;
     private date hiringDate;
     private boolean isManager;
@@ -18,17 +18,17 @@ public class AdminModel {
 	public AdminModel(int int1, String string, String string2) {
 		// TODO Auto-generated constructor stub
 	}
-	public String getAdmin_id() {
-		return admin_id;
+	public String getAdm_id() {
+		return adm_id;
 	}
-	public void setAdmin_id(String admin_id) {
-		this.admin_id = admin_id;
+	public void setAdm_id(String adm_id) {
+		this.adm_id = adm_id;
 	}
 	public String getAdmName() {
-		return adminName;
+		return admName;
 	}
-	public void setAdmName(String adminName) {
-		this.adminName = adminName;
+	public void setAdmName(String admName) {
+		this.admName = admName;
 	}
 	public String getEmail() {
 		return email;

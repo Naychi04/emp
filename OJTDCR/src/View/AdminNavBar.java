@@ -286,7 +286,28 @@ public class AdminNavBar extends JFrame {
 	    panels.put("AdminDashboard", new AdminDashboard()); // <- Add this
 		panels.put("Add Admin", panelWithLabel("Add Admin"));
 		panels.put("EmployeeDashboard", panelWithLabel("Employee Dashboard"));
-
+		panels.put("AdminDetail", new JPanel());
+	}
+	
+	public void showAdminDetail(String adminName) {
+	    AdminDetailView detailView = new AdminDetailView();
+	    detailView.loadAdminDetail(adminName);
+	    detailView.setBackActionListener(e -> {
+	        cardLayout.show(contentPanel, "AdminDashboard");
+	        setActiveNav("Admin Dashboard");
+	    });
+	    
+	    // Replace the content of the detail panel
+	    panels.put("AdminDetail", detailView);
+	    contentPanel.removeAll();
+	    
+	    // Re-add all panels
+	    for (Map.Entry<String, JPanel> entry : panels.entrySet()) {
+	        contentPanel.add(entry.getValue(), entry.getKey());
+	    }
+	    
+	    cardLayout.show(contentPanel, "AdminDetail");
+	    setActiveNav("Admin Detail"); // You might want to add this to your nav labels
 	}
  
 	private JPanel panelWithLabel(String text) {

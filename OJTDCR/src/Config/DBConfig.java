@@ -51,15 +51,7 @@ public class DBConfig {
 	public String getPrimaryKey(String field, String table, String prefix) throws SQLException {
 		ResultSet rs = sqlQuery(field, table);
 		int current;
-//        if (rs.next()) {
-//            current = Integer.parseInt(rs.getString(field).substring(2)) + 1;
-//            if(current>0 && current<=9){return prefix +"0000"+current;}
-//	           else if(current>9 && current<=99){return prefix +"000"+current;}
-//	           else if(current>99 && current<=999){return prefix +"00"+current;}
-//	           else if(current>999 && current<=9999){return prefix +"0"+current;}
-//	           else if(current>9999 && current<=99999){return prefix +current;}
-//        }
-//        return prefix + "00001";
+
 
 		List<String> result = new ArrayList<String>();
 		while (rs.next()) {
@@ -132,41 +124,4 @@ public class DBConfig {
 			e.printStackTrace();
 		}
 	}
-
-	// total count
-	public static String totalCount(String table) throws SQLException {
-		String total_count = null;
-		String sql = "SELECT COUNT(*) FROM " + table;
-
-		DBConfig db = new DBConfig(); // instantiate to call non-static method
-		Connection conn = db.getConnection(); // get the initialized connection
-
-		PreparedStatement ps = conn.prepareStatement(sql);
-		ResultSet rs = ps.executeQuery();
-		if (rs.next()) {
-			total_count = rs.getString(1);
-		}
-		return total_count;
-	}
-	
-	public static List<Map<String, String>> getAdminData() throws SQLException {
-	    List<Map<String, String>> admins = new ArrayList<>();
-	    String query = "SELECT admName, Department FROM admin";
-	    
-	    try (Connection conn = getConnection();
-	         Statement stmt = conn.createStatement();
-	         ResultSet rs = stmt.executeQuery(query)) {
-	        
-	        while (rs.next()) {
-	            Map<String, String> admin = new HashMap<>();
-	            admin.put("name", rs.getString("admName"));
-	            admin.put("department", rs.getString("Department"));
-	            admins.add(admin);
-	        }
-	    }
-	    return admins;
-	}
-	
-	
-
 }
